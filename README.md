@@ -1,1 +1,2 @@
-This is starter template for [Learn Next.js](https://nextjs.org/learn).
+# Group 1 TCSS 460 Frontend
+**Link**: https://group1-tcss460-front-end.vercel.app/
