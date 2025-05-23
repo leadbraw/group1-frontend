@@ -30,8 +30,7 @@ const other: NavItemType = {
       title: <FormattedMessage id="reset-pass" />,
       type: 'item',
       url: '/reset-pass',
-      icon: icons.StopOutlined,
-      disabled: true
+      icon: icons.StopOutlined
     },
     {
       id: 'full-page',
