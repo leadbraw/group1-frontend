@@ -119,7 +119,7 @@ export default function AuthResetPassword() {
                   id="password-reset"
                   type={showPassword ? 'text' : 'password'}
                   value={values.currentPassword}
-                  name="password"
+                  name="currentPassword"
                   onBlur={handleBlur}
                   onChange={(e) => {
                     handleChange(e);
@@ -147,7 +147,7 @@ export default function AuthResetPassword() {
                   id="new-password-reset"
                   type={showPassword ? 'text' : 'password'}
                   value={values.newPassword}
-                  name="password"
+                  name="newPassword"
                   onBlur={handleBlur}
                   onChange={(e) => {
                     handleChange(e);
