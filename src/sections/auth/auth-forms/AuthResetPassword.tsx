@@ -140,11 +140,11 @@ export default function AuthResetPassword() {
                   }
                   placeholder="Enter current password"
                 />
-                <InputLabel htmlFor="password-reset">New Password</InputLabel>
+                <InputLabel htmlFor="new-password-reset">New Password</InputLabel>
                 <OutlinedInput
                   fullWidth
                   error={Boolean(touched.newPassword && errors.newPassword)}
-                  id="password-reset"
+                  id="new-password-reset"
                   type={showPassword ? 'text' : 'password'}
                   value={values.newPassword}
                   name="password"
