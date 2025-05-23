@@ -140,6 +140,13 @@ export default function AuthResetPassword() {
                   }
                   placeholder="Enter current password"
                 />
+              </Stack>
+              {touched.currentPassword && errors.currentPassword && (
+                <FormHelperText error id="helper-text-password-reset">
+                  {errors.currentPassword}
+                </FormHelperText>
+              )}
+              <Stack spacing={1}>
                 <InputLabel htmlFor="new-password-reset">New Password</InputLabel>
                 <OutlinedInput
                   fullWidth
@@ -169,9 +176,9 @@ export default function AuthResetPassword() {
                   placeholder="Enter new password"
                 />
               </Stack>
-              {touched.currentPassword && errors.currentPassword && (
+              {touched.newPassword && errors.newPassword && (
                 <FormHelperText error id="helper-text-password-reset">
-                  {errors.currentPassword}
+                  {errors.newPassword}
                 </FormHelperText>
               )}
               <FormControl fullWidth sx={{ mt: 2 }}>

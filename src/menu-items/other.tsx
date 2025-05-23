@@ -3,7 +3,7 @@ import { FormattedMessage } from 'react-intl';
 
 // assets
 import QuestionOutlined from '@ant-design/icons/QuestionOutlined';
-import StopOutlined from '@ant-design/icons/StopOutlined';
+import LockOutlined from '@ant-design/icons/LockOutlined';
 import PhoneOutlined from '@ant-design/icons/PhoneOutlined';
 import FullscreenOutlined from '@ant-design/icons/FullscreenOutlined';
 
@@ -13,7 +13,7 @@ import { NavItemType } from 'types/menu';
 // icons
 const icons = {
   QuestionOutlined,
-  StopOutlined,
+  LockOutlined,
   PhoneOutlined,
   FullscreenOutlined
 };
@@ -30,7 +30,7 @@ const other: NavItemType = {
       title: <FormattedMessage id="reset-pass" />,
       type: 'item',
       url: '/reset-pass',
-      icon: icons.StopOutlined
+      icon: icons.LockOutlined
     },
     {
       id: 'full-page',
