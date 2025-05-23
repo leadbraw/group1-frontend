@@ -26,10 +26,10 @@ const other: NavItemType = {
   type: 'group',
   children: [
     {
-      id: 'disabled-menu',
-      title: <FormattedMessage id="disabled-menu" />,
+      id: 'reset-pass',
+      title: <FormattedMessage id="reset-pass" />,
       type: 'item',
-      url: '#',
+      url: '/reset-pass',
       icon: icons.StopOutlined,
       disabled: true
     },
@@ -44,7 +44,7 @@ const other: NavItemType = {
       id: 'documentation',
       title: <FormattedMessage id="documentation" />,
       type: 'item',
-      url: 'https://uwt-set-tcss460-lecture-materials.github.io/TCSS460-phase-2/',
+      url: 'https://ahwang5.github.io/TCSS-460-Web-API/',
       icon: icons.QuestionOutlined,
       external: true,
       target: true
