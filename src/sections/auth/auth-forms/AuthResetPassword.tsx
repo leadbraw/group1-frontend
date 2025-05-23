@@ -112,7 +112,7 @@ export default function AuthResetPassword() {
           <Grid container spacing={3}>
             <Grid item xs={12}>
               <Stack spacing={1}>
-                <InputLabel htmlFor="password-reset">Password</InputLabel>
+                <InputLabel htmlFor="password-reset">Current Password</InputLabel>
                 <OutlinedInput
                   fullWidth
                   error={Boolean(touched.currentPassword && errors.currentPassword)}
@@ -140,6 +140,7 @@ export default function AuthResetPassword() {
                   }
                   placeholder="Enter current password"
                 />
+                <InputLabel htmlFor="password-reset">New Password</InputLabel>
                 <OutlinedInput
                   fullWidth
                   error={Boolean(touched.newPassword && errors.newPassword)}
