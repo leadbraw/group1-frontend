@@ -1,4 +1,4 @@
-import {IBooks} from "core/model/books-model";
+import { IBooks } from "core/model/books-model";
 
 const books: IBooks[] = [
     {
@@ -47,3 +47,5 @@ const books: IBooks[] = [
         small_image_url: "www.small-image.com"
     }
 ]
+
+export default books;
