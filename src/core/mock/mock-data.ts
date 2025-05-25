@@ -8,7 +8,7 @@ const books: IBooks[] = [
         original_title: "Arctic Action OG",
         title: "Arctic Action",
         image_url: "www.image.com",
-        small_image_url: "www.small-image.com"
+        small_image_url: "https://images.gr-assets.com/books/1361039443s/41865.jpg"
     },
     {
         book_id: 2,
