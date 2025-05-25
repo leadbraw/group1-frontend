@@ -15,7 +15,6 @@ import { BookListItem, NoBook } from 'components/BookListItem';
 const defaultTheme = createTheme();
 
 export default function BooksList() {
-  const book = books;
 
   return (
     <ThemeProvider theme={defaultTheme}>
