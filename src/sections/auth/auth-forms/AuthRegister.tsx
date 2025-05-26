@@ -66,14 +66,13 @@ export default function AuthRegister({ providers, csrfToken }: any) {
           firstname: '',
           lastname: '',
           email: '',
-          role: '',
+          company: '',
           password: '',
           submit: null
         }}
         validationSchema={Yup.object().shape({
           firstname: Yup.string().max(255).required('First Name is required'),
           lastname: Yup.string().max(255).required('Last Name is required'),
-          role: Yup.number().min(1).max(5).required('Role is required'),
           email: Yup.string().email('Must be a valid email').max(255).required('Email is required'),
           password: Yup.string()
             .required('Password is required')
@@ -88,7 +87,7 @@ export default function AuthRegister({ providers, csrfToken }: any) {
             lastname: values.lastname,
             email: trimmedEmail,
             password: values.password,
-            role: values.role,
+            company: values.company,
             callbackUrl: APP_DEFAULT_PATH
           }).then((res: any) => {
             if (res?.error) {
@@ -147,22 +146,22 @@ export default function AuthRegister({ providers, csrfToken }: any) {
               </Grid>
               <Grid item xs={12}>
                 <Stack spacing={1}>
-                  <InputLabel htmlFor="role-signup">Role</InputLabel>
+                  <InputLabel htmlFor="company-signup">Company</InputLabel>
                   <OutlinedInput
                     fullWidth
-                    error={Boolean(touched.role && errors.role)}
-                    id="role-signup"
-                    value={values.role}
-                    name="role"
+                    error={Boolean(touched.company && errors.company)}
+                    id="company-signup"
+                    value={values.company}
+                    name="company"
                     onBlur={handleBlur}
                     onChange={handleChange}
-                    placeholder="Enter your role number"
+                    placeholder="Enter your company name"
                     inputProps={{}}
                   />
                 </Stack>
-                {touched.role && errors.role && (
-                  <FormHelperText error id="helper-text-role-signup">
-                    {errors.role}
+                {touched.company && errors.company && (
+                  <FormHelperText error id="helper-text-company-signup">
+                    {errors.company}
                   </FormHelperText>
                 )}
               </Grid>
