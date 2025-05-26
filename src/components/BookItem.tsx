@@ -1,35 +1,30 @@
-// components/BookDetails.tsx
-'use client';
 import { IBook } from 'types/books';
-import Image from 'next/image';
-import { Box, Typography } from '@mui/material';
+import CommentsDisabledIcon from '@mui/icons-material/CommentsDisabled';
+import { ListItem, ListItemAvatar, ListItemText, Avatar } from '@mui/material';
+import Link from 'next/link';
 
-export default function BookDetails({ book }: { book: IBook }) {
+export default function BookListItem({ book }: { book: IBook }) {
   return (
-    <Box sx={{ padding: 4, maxWidth: 800, margin: 'auto' }}>
-      <Typography variant="h4" gutterBottom>
-        {book.title}
-      </Typography>
-      <Typography variant="subtitle1" color="text.secondary" gutterBottom>
-        {book.original_title}
-      </Typography>
+    <Link href={`/books/isbn/${book.isbn13}`} passHref legacyBehavior>
+      <ListItem>
+        <ListItemAvatar>
+          <Avatar alt={book.title} src={book.small_image_url} variant="rounded" />
+        </ListItemAvatar>
+        <ListItemText primary={book.title} secondary={`ISBN-13 Number: ${book.isbn13}`} secondaryTypographyProps={{ color: 'gray' }} />
+      </ListItem>
+    </Link>
+  );
+}
 
-      <Box sx={{ my: 2 }}>
-        <Image
-          src={book.image_url}
-          alt={book.title}
-          width={200}
-          height={300}
-          style={{ borderRadius: 4 }}
-        />
-      </Box>
-
-      <Typography variant="body1" gutterBottom>
-        ISBN-13: {book.isbn13}
-      </Typography>
-      <Typography variant="body1" gutterBottom>
-        Publication Year: {book.original_publication_year}
-      </Typography>
-    </Box>
+export function NoBook() {
+  return (
+    <ListItem>
+      <ListItemAvatar>
+        <Avatar>
+          <CommentsDisabledIcon />
+        </Avatar>
+      </ListItemAvatar>
+      <ListItemText primary="No Elements" />
+    </ListItem>
   );
 }

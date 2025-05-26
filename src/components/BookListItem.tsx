@@ -1,7 +1,7 @@
 import { IBook } from 'types/books';
 import CommentsDisabledIcon from '@mui/icons-material/CommentsDisabled';
 import { ListItem, ListItemAvatar, ListItemText, Avatar } from '@mui/material';
-import Link from 'themes/overrides/Link';
+import Link from 'next/Link';
 
 export function BookListItem({ book }: { book: IBook }) {
   return (
