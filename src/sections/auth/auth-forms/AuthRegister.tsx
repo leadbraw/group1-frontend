@@ -69,6 +69,7 @@ export default function AuthRegister({ providers, csrfToken }: any) {
           role: '',
           password: '',
           username: '',
+          phone: '',
           submit: null
         }}
         validationSchema={Yup.object().shape({
@@ -77,7 +78,8 @@ export default function AuthRegister({ providers, csrfToken }: any) {
           role: Yup.number().min(1).max(5).required('Role is required'),
           email: Yup.string().email('Must be a valid email').max(255).required('Email is required'),
           password: Yup.string().required('Password is required').min(8, 'Password must be more than 7 characters'),
-          username: Yup.string().required('Username is required')
+          username: Yup.string().required('Username is required'),
+          phone: Yup.string().min(9).max(10).required('Phone number is required')
         })}
         onSubmit={async (values, { setErrors, setSubmitting }) => {
           const trimmedEmail = values.email.trim();
@@ -89,6 +91,7 @@ export default function AuthRegister({ providers, csrfToken }: any) {
             password: values.password,
             role: values.role,
             username: values.username,
+            phone: values.phone,
             callbackUrl: APP_DEFAULT_PATH
           }).then((res: any) => {
             if (res?.error) {
@@ -207,6 +210,28 @@ export default function AuthRegister({ providers, csrfToken }: any) {
                 {touched.username && errors.username && (
                   <FormHelperText error id="helper-text-username-signup">
                     {errors.username}
+                  </FormHelperText>
+                )}
+              </Grid>
+              <Grid item xs={12}>
+                <Stack spacing={1}>
+                  <InputLabel htmlFor="phone-signup">phone*</InputLabel>
+                  <OutlinedInput
+                    fullWidth
+                    error={Boolean(touched.phone && errors.phone)}
+                    id="phone-login"
+                    type="phone"
+                    value={values.phone}
+                    name="phone"
+                    onBlur={handleBlur}
+                    onChange={handleChange}
+                    placeholder="Enter phone number"
+                    inputProps={{}}
+                  />
+                </Stack>
+                {touched.phone && errors.phone && (
+                  <FormHelperText error id="helper-text-phone-signup">
+                    {errors.phone}
                   </FormHelperText>
                 )}
               </Grid>
