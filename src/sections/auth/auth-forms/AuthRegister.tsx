@@ -150,7 +150,7 @@ export default function AuthRegister({ providers, csrfToken }: any) {
               </Grid>
               <Grid item xs={12}>
                 <Stack spacing={1}>
-                  <InputLabel htmlFor="role-signup">Role*</InputLabel>
+                  <InputLabel htmlFor="role-signup">Role</InputLabel>
                   <OutlinedInput
                     fullWidth
                     error={Boolean(touched.role && errors.role)}
