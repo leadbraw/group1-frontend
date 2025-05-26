@@ -51,7 +51,8 @@ export const authOptions: NextAuthOptions = {
         firstname: { name: 'firstname', label: 'First Name', type: 'text', placeholder: 'Enter First Name' },
         lastname: { name: 'lastname', label: 'Last Name', type: 'text', placeholder: 'Enter Last Name' },
         email: { name: 'email', label: 'Email', type: 'email', placeholder: 'Enter Email' },
-        company: { name: 'company', label: 'Company', type: 'text', placeholder: 'Enter Company' },
+        role: { name: 'role', label: 'role', type: 'text', placeholder: 'Enter role' },
+        username: { name: 'username', label: 'Username', type: 'username', placeholder: 'Enter Username' },
         password: { name: 'password', label: 'Password', type: 'password', placeholder: 'Enter Password' }
       },
       async authorize(credentials) {
@@ -59,11 +60,10 @@ export const authOptions: NextAuthOptions = {
           const user = await axios.post('/register', {
             firstname: credentials?.firstname,
             lastname: credentials?.lastname,
-            company: credentials?.company,
+            role: credentials?.role,
             password: credentials?.password,
             email: credentials?.email,
-            role: 1,
-            username: credentials?.email,
+            username: credentials?.username,
             phone: getRandomPhoneNumber() // TODO request phone number from user
           });
 
