@@ -1,11 +1,11 @@
 import { IBook } from 'types/books';
 import CommentsDisabledIcon from '@mui/icons-material/CommentsDisabled';
 import { ListItem, ListItemAvatar, ListItemText, Avatar } from '@mui/material';
-import Link from 'next/Link';
+import Link from 'next/link';
 
 export function BookListItem({ book }: { book: IBook }) {
   return (
-    <Link href={'/books/view/${book.book_id}'} passHref legacyBehavior>
+    <Link href={`/books/view/${book.isbn13}`} passHref legacyBehavior>
     <ListItem alignItems="flex-start">
       <ListItemAvatar>
         <Avatar alt={book.title} src={book.small_image_url} variant="rounded" />
