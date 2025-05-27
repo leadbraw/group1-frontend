@@ -1,11 +1,10 @@
-import * as React from 'react';
 import { IBook } from 'types/books';
 import CommentsDisabledIcon from '@mui/icons-material/CommentsDisabled';
 import { ListItem, ListItemAvatar, ListItemText, Avatar } from '@mui/material';
 import Link from 'next/link';
 let isbn = 0;
 export function BookListItem({ book }: { book: IBook }) {
-  isbn = React.useState(book.isbn13);
+  isbn = book.isbn13;
   return (
     <Link href={`/books/view/`} passHref legacyBehavior>
     <ListItem alignItems="flex-start">
