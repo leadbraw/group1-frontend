@@ -4,5 +4,6 @@ import { getIsbn } from 'components/BookListItem';
 
 export default function BookItemViewPge() {
   const isbn = getIsbn();
+  console.log(isbn);
   return <BookItem isbn13={isbn}/>;
 }
