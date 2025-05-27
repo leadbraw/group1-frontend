@@ -5,6 +5,7 @@ import CredentialsProvider from 'next-auth/providers/credentials';
 // project import
 import axios from 'utils/axios';
 
+/*
 function getRandomInt(min: number, max: number) {
   min = Math.ceil(min);
   max = Math.floor(max);
@@ -17,6 +18,7 @@ function getRandomPhoneNumber() {
   const lineNumber = getRandomInt(1000, 9999);
   return `${areaCode}-${centralOfficeCode}-${lineNumber}`;
 }
+*/
 
 export const authOptions: NextAuthOptions = {
   providers: [
@@ -51,20 +53,21 @@ export const authOptions: NextAuthOptions = {
         firstname: { name: 'firstname', label: 'First Name', type: 'text', placeholder: 'Enter First Name' },
         lastname: { name: 'lastname', label: 'Last Name', type: 'text', placeholder: 'Enter Last Name' },
         email: { name: 'email', label: 'Email', type: 'email', placeholder: 'Enter Email' },
-        company: { name: 'company', label: 'Company', type: 'text', placeholder: 'Enter Company' },
-        password: { name: 'password', label: 'Password', type: 'password', placeholder: 'Enter Password' }
+        role: { name: 'role', label: 'role', type: 'text', placeholder: 'Enter role' },
+        username: { name: 'username', label: 'Username', type: 'username', placeholder: 'Enter Username' },
+        password: { name: 'password', label: 'Password', type: 'password', placeholder: 'Enter Password' },
+        phone: { name: 'phone', label: 'Phone Number', type: 'phone', placeholder: 'Enter Phone Number' }
       },
       async authorize(credentials) {
         try {
           const user = await axios.post('/register', {
             firstname: credentials?.firstname,
             lastname: credentials?.lastname,
-            company: credentials?.company,
+            role: credentials?.role,
             password: credentials?.password,
             email: credentials?.email,
-            role: 1,
-            username: credentials?.email,
-            phone: getRandomPhoneNumber() // TODO request phone number from user
+            username: credentials?.username,
+            phone: credentials?.phone
           });
 
           if (user) {
