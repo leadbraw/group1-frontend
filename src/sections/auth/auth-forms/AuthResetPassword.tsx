@@ -91,15 +91,16 @@ export default function AuthResetPassword() {
             } else {
                 setStatus({ success: true });
                 setSubmitting(false);
-                openSnackbar({
-                    open: true,
-                    message: 'Successfuly reset password.',
-                    variant: 'alert',
-                    alert: {
-                        color: 'success'
-                    }
-                } as SnackbarProps);
-
+                if (typeof window !== undefined) {
+                    openSnackbar({
+                        open: true,
+                        message: 'Successfuly reset password.',
+                        variant: 'alert',
+                        alert: {
+                            color: 'success'
+                        }
+                    } as SnackbarProps);
+                }
                 setTimeout(() => {
                     router.push('/login');
                 }, 1500);
