@@ -36,7 +36,6 @@ import { StringColorProps } from 'types/password';
 // assets
 import EyeOutlined from '@ant-design/icons/EyeOutlined';
 import EyeInvisibleOutlined from '@ant-design/icons/EyeInvisibleOutlined';
-import { APP_DEFAULT_PATH } from 'config';
 import { signIn } from 'next-auth/react';
 
 // ============================|| STATIC - RESET PASSWORD ||============================ //
