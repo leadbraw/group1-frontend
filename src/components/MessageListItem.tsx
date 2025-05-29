@@ -1,33 +1,21 @@
-import { useRouter } from "next/navigation";
+import { useRouter } from 'next/navigation';
 
-import DeleteIcon from "@mui/icons-material/Delete";
-import CommentsDisabledIcon from "@mui/icons-material/CommentsDisabled";
-import {
-  IconButton,
-  ListItem,
-  ListItemAvatar,
-  ListItemButton,
-  ListItemText,
-} from "@mui/material";
+import DeleteIcon from '@mui/icons-material/Delete';
+import CommentsDisabledIcon from '@mui/icons-material/CommentsDisabled';
+import { IconButton, ListItem, ListItemAvatar, ListItemButton, ListItemText } from '@mui/material';
 
 // project import
-import { IMessage } from "types/message";
-import PriorityAvatar from "components/Priority";
-import { useMessage } from "contexts/MessageContext";
+import { IMessage } from 'types/message';
+import PriorityAvatar from 'components/Priority';
+import { useMessage } from 'contexts/MessageContext';
 
-export function MessageListItem({
-  message,
-  onDelete,
-}: {
-  message: IMessage;
-  onDelete: (name: string) => void;
-}) {
+export function MessageListItem({ message, onDelete }: { message: IMessage; onDelete: (name: string) => void }) {
   const router = useRouter();
   const { onChangeMessage } = useMessage();
 
-  function onItemClick(msg: IMessage) {
-    console.dir(msg);
-  }
+  //   function onItemClick(msg: IMessage) {
+  //     console.dir(msg);
+  //   }
 
   // function onItemClick({ name }: IMessage) {
   //   router.push('/messages/msgParam/' + name);
@@ -37,19 +25,15 @@ export function MessageListItem({
   //   router.push('/messages/msgQuery?msg=' + JSON.stringify(msg));
   // }
 
-  // function onItemClick(msg: IMessage) {
-  //   onChangeMessage(msg);
-  //   router.push('/messages/msgContext/');
-  // }
+  function onItemClick(msg: IMessage) {
+    onChangeMessage(msg);
+    router.push('/messages/msgContext/');
+  }
 
   return (
     <ListItem
       secondaryAction={
-        <IconButton
-          edge="end"
-          aria-label="delete"
-          onClick={() => onDelete(message.name)}
-        >
+        <IconButton edge="end" aria-label="delete" onClick={() => onDelete(message.name)}>
           <DeleteIcon />
         </IconButton>
       }
@@ -59,11 +43,7 @@ export function MessageListItem({
         <ListItemAvatar>
           <PriorityAvatar priority={message.priority} />
         </ListItemAvatar>
-        <ListItemText
-          primary={message.message}
-          secondary={message.name}
-          secondaryTypographyProps={{ color: "gray" }}
-        />
+        <ListItemText primary={message.message} secondary={message.name} secondaryTypographyProps={{ color: 'gray' }} />
       </ListItemButton>
     </ListItem>
   );
