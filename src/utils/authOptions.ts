@@ -90,7 +90,7 @@ export const authOptions: NextAuthOptions = {
       },
       async authorize(credentials) {
         try {
-          const response = await axios.post('/users/password', {
+          const response = await axios.patch('/users/password', {
             current_password: credentials?.currentPassword,
             new_password: credentials?.newPassword
           });
