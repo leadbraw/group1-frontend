@@ -11,7 +11,7 @@ export function BookListItem({ book }: { book: IBook }) {
 
   function handleClick(book: IBook) {
     onChangeBook(book);
-    router.push('/books/bookContext');
+    router.push('/books/BookContext');
   }
   return (
     <ListItem alignItems="flex-start" disablePadding>
