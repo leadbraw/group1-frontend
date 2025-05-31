@@ -35,6 +35,7 @@ const AuthorSearch = () => {
           const res = await axios.get(`/books/author/${encodeURIComponent(values.author)}`);
           setBooks(res.data);
         } catch (err: any) {
+          console.log(err)
           setError(err.message || 'Failed to fetch books.');
         } finally {
           setSubmitting(false);
