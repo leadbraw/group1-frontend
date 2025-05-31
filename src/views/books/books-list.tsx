@@ -8,7 +8,7 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { List, Divider } from '@mui/material';
-import books  from 'core/mock/mock-data';
+import books from 'core/mock/mock-data';
 import { BookListItem, NoBook } from 'components/BookListItem';
 
 
