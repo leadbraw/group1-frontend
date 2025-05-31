@@ -9,7 +9,7 @@ export function BookListItem({ book }: { book: IBook }) {
     <Link href={`/books/view/`} passHref legacyBehavior>
     <ListItem alignItems="flex-start">
       <ListItemAvatar>
-        <Avatar alt={book.title} src={book.small_image_url} variant="rounded" />
+        <Avatar alt={book.title} src={book.icons.large === "" ? book.icons.small : book.icons.large} variant="rounded" />
       </ListItemAvatar>
       <ListItemText primary={book.title} secondary={'ISBN-13 Number: ' + book.isbn13} secondaryTypographyProps={{ color: 'gray' }} />
     </ListItem>

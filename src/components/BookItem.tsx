@@ -6,7 +6,7 @@ export function BookItem({ book }: { book: IBook }) {
   return (
       <ListItem>
         <ListItemAvatar>
-          <Avatar alt={book.title} src={book.small_image_url} variant="rounded" />
+          <Avatar alt={book.title} src={book.icons.large === "" ? book.icons.small : book.icons.large} variant="rounded" />
         </ListItemAvatar>
         <ListItemText primary={book.title} secondary={`ISBN-13 Number: ${book.isbn13}`} secondaryTypographyProps={{ color: 'gray' }} />
       </ListItem>
