@@ -10,6 +10,8 @@ export default function BookView({ isbn13 }: {isbn13: number}) {
   );
   if (book) {
     return <BookItem book={book as IBook} />;
+  } else {
+    notfound();
   }
-  notfound();
+  
 }
