@@ -32,6 +32,13 @@ const pages: NavItemType = {
           type: 'item',
           url: '/books/list',
           icon: icons.BooksIcon
+        },
+        {
+          id: 'new-book',
+          title: <FormattedMessage id="new-book" />,
+          type: 'item',
+          url: '/books/new',
+          icon: icons.BooksIcon
         }
       ]
     }
