@@ -33,7 +33,7 @@ const YearSearch = () => {
     <Formik
       initialValues={{ year: '' }}
       validationSchema={Yup.object({
-        author: Yup.number().required('Publication year is required')
+        year: Yup.number().required('Publication year is required')
       })}
       onSubmit={async (values, { setSubmitting }) => {
         setError('');
