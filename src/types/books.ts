@@ -1,5 +1,5 @@
-import IIcons from "./icons";
-import { IRatings } from "./ratings";
+import IIcons from './icons';
+import { IRatings } from './ratings';
 
 export interface IBook {
   authors: string;

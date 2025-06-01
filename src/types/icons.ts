@@ -1,4 +1,4 @@
 export default interface IIcons {
-    large: string;
-    small: string;
+  large: string;
+  small: string;
 }

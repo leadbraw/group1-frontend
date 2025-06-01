@@ -39,7 +39,7 @@ export default function BooksList() {
             <List>
               {books.length > 0 ? (
                 books.map((book, index: number) => (
-                  <React.Fragment key={book.book_id}>
+                  <React.Fragment key={book.isbn13}>
                     <BookListItem book={book} />
                     {index < books.length - 1 && <Divider component="li" />}
                   </React.Fragment>
