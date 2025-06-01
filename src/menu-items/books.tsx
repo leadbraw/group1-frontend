@@ -3,10 +3,11 @@ import { FormattedMessage } from 'react-intl';
 import ReadOutlined from '@ant-design/icons/ReadOutlined';
 import BookIcon from '@mui/icons-material/Book';
 import BooksIcon from '@mui/icons-material/LibraryBooks';
+import SearchIcon from '@mui/icons-material/Search';
 
 import { NavItemType } from 'types/menu';
 
-const icons = { ReadOutlined, BookIcon, BooksIcon };
+const icons = { ReadOutlined, BookIcon, BooksIcon, SearchIcon };
 
 const pages: NavItemType = {
   id: 'group-books',
@@ -32,6 +33,20 @@ const pages: NavItemType = {
           type: 'item',
           url: '/books/list',
           icon: icons.BooksIcon
+        },
+        {
+          id: 'author-search',
+          title: <FormattedMessage id="author-search" />,
+          type: 'item',
+          url: '/books/authorsearch',
+          icon: icons.SearchIcon
+        },
+        {
+          id: 'year-search',
+          title: <FormattedMessage id="year-search" />,
+          type: 'item',
+          url: '/books/yearsearch',
+          icon: icons.SearchIcon
         },
         {
           id: 'new-book',

@@ -8,7 +8,7 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { List, Divider } from '@mui/material';
-import books  from 'core/mock/mock-data';
+import books from 'core/mock/mock-data';
 import { BookListItem, NoBook } from 'components/BookListItem';
 
 
@@ -39,7 +39,7 @@ export default function BooksList() {
             <List>
               {books.length > 0 ? (
                 books.map((book, index: number) => (
-                  <React.Fragment key={book.book_id}>
+                  <React.Fragment key={book.isbn13}>
                     <BookListItem book={book} />
                     {index < books.length - 1 && <Divider component="li" />}
                   </React.Fragment>

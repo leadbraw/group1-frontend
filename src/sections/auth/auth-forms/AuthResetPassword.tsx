@@ -36,6 +36,7 @@ import { StringColorProps } from 'types/password';
 // assets
 import EyeOutlined from '@ant-design/icons/EyeOutlined';
 import EyeInvisibleOutlined from '@ant-design/icons/EyeInvisibleOutlined';
+import { signIn } from 'next-auth/react';
 
 // ============================|| STATIC - RESET PASSWORD ||============================ //
 
@@ -79,24 +80,32 @@ export default function AuthResetPassword() {
       })}
       onSubmit={async (values, { setErrors, setStatus, setSubmitting }) => {
         try {
-          // password reset
-          if (scriptedRef.current) {
-            setStatus({ success: true });
-            setSubmitting(false);
-
-            openSnackbar({
-              open: true,
-              message: 'Successfuly reset password.',
-              variant: 'alert',
-              alert: {
-                color: 'success'
-              }
-            } as SnackbarProps);
-
-            setTimeout(() => {
-              router.push('/login');
-            }, 1500);
-          }
+          signIn('changePassword', {
+            redirect: false,
+            currentPassword: values.currentPassword,
+            newPassword: values.newPassword
+          }).then((res: any) => {
+            if (res?.error) {
+                setErrors({ submit: res.error });
+                setSubmitting(false);
+            } else {
+                setStatus({ success: true });
+                setSubmitting(false);
+                if (typeof window !== undefined) {
+                    openSnackbar({
+                        open: true,
+                        message: 'Successfuly reset password.',
+                        variant: 'alert',
+                        alert: {
+                            color: 'success'
+                        }
+                    } as SnackbarProps);
+                }
+                setTimeout(() => {
+                    router.push('/login');
+                }, 1500);
+            }
+          });
         } catch (err: any) {
           console.error(err);
           if (scriptedRef.current) {

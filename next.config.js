@@ -14,6 +14,11 @@ const nextConfig = {
         protocol: 'https',
         hostname: 'flagcdn.com',
         pathname: '**'
+      },
+      {
+        protocol: 'https',
+        hostname: 'images.gr-assets.com',
+        pathname: '**'
       }
     ]
   },

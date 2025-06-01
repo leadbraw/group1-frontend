@@ -1,3 +1,4 @@
+// Not gonna be used - use 'types/books' instead
 export interface IBooks {
     book_id: number;
     isbn13: number;

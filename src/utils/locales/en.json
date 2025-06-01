@@ -18,5 +18,7 @@
   "view-messages": "View Messages",
   "view-books": "View Books",
   "view-book": "View Book",
-  "new-book": "New Book"
+  "new-book": "New Book",
+  "author-search": "Search by Author",
+  "year-search": "Search by Year"
 }
