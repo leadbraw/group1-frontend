@@ -40,7 +40,7 @@ const IsbnSearch = () => {
         setBooks([]);
         try {
           const res = await axios.get(`/books/isbn/${encodeURIComponent(values.isbn)}`);
-          setBooks(res.data);
+          setBooks(res.data.book ? [res.data.book] : []);
           console.log('The books:', res.data); // DEBUG LINE
         } catch (err: any) {
           setError(err.message || 'Failed to fetch books.');
