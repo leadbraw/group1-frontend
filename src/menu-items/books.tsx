@@ -42,6 +42,13 @@ const pages: NavItemType = {
           icon: icons.SearchIcon
         },
         {
+          id: 'isbn-search',
+          title: <FormattedMessage id="isbn-search" />,
+          type: 'item',
+          url: '/books/isbnsearch',
+          icon: icons.SearchIcon
+        },
+        {
           id: 'year-search',
           title: <FormattedMessage id="year-search" />,
           type: 'item',

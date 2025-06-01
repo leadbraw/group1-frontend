@@ -20,5 +20,6 @@
   "view-book": "View Book",
   "new-book": "New Book",
   "author-search": "Search by Author",
+  "isbn-search": "Search by ISBN",
   "year-search": "Search by Year"
 }
