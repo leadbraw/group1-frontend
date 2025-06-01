@@ -17,7 +17,7 @@ export function BookListItem({ book }: { book: IBook }) {
     <ListItem alignItems="flex-start" disablePadding>
       <ListItemButton onClick={() => handleClick(book)}>
         <ListItemAvatar>
-          <Avatar alt={book.title} src={book.icons.small} variant="rounded" />
+          <Avatar alt={book.title} src={book.icons.small || book.icons.large} variant="rounded" />
         </ListItemAvatar>
         <ListItemText primary={book.title} secondary={'ISBN-13 Number: ' + book.isbn13} secondaryTypographyProps={{ color: 'gray' }} />
       </ListItemButton>

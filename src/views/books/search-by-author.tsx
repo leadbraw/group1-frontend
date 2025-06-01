@@ -3,8 +3,6 @@
 import React, { useState } from 'react';
 
 // material-ui
-import Avatar from '@mui/material/Avatar';
-import BookIcon from '@mui/icons-material/Book';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
@@ -83,11 +81,8 @@ const AuthorSearch = () => {
                       alignItems: 'center'
                     }}
                   >
-                    <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
-                      <BookIcon />
-                    </Avatar>
                     <Typography component="h1" variant="h5">
-                      Book List
+                      Results
                     </Typography>
 
                     <Box sx={{ mt: 4, width: '100%' }}>
