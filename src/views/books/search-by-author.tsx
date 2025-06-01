@@ -43,7 +43,6 @@ const AuthorSearch = () => {
           setBooks(res.data.books);
           console.log('The books:', res.data.books); // DEBUG LINE
         } catch (err: any) {
-          <NoBook />;
           setError(err.message || 'Failed to fetch books.');
         } finally {
           setSubmitting(false);
@@ -70,40 +69,38 @@ const AuthorSearch = () => {
 
             {error && <Typography color="error">{error}</Typography>}
 
-            {books.length > 0 && (
-              <ThemeProvider theme={defaultTheme}>
-                <Container component="main" maxWidth="md">
-                  <CssBaseline />
-                  <Box
-                    sx={{
-                      marginTop: 8,
-                      display: 'flex',
-                      flexDirection: 'column',
-                      alignItems: 'center'
-                    }}
-                  >
-                    <Typography component="h1" variant="h5">
-                      Results
-                    </Typography>
+            <ThemeProvider theme={defaultTheme}>
+              <Container component="main" maxWidth="md">
+                <CssBaseline />
+                <Box
+                  sx={{
+                    marginTop: 8,
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center'
+                  }}
+                >
+                  <Typography component="h1" variant="h5">
+                    Results
+                  </Typography>
 
-                    <Box sx={{ mt: 4, width: '100%' }}>
-                      <List>
-                        {books.length > 0 ? (
-                          books.map((book, index: number) => (
-                            <React.Fragment key={book.isbn13}>
-                              <BookListItem book={book} />
-                              {index < books.length - 1 && <Divider component="li" />}
-                            </React.Fragment>
-                          ))
-                        ) : (
-                          <NoBook />
-                        )}
-                      </List>
-                    </Box>
+                  <Box sx={{ mt: 4, width: '100%' }}>
+                    <List>
+                      {books.length > 0 ? (
+                        books.map((book, index: number) => (
+                          <React.Fragment key={book.isbn13}>
+                            <BookListItem book={book} />
+                            {index < books.length - 1 && <Divider component="li" />}
+                          </React.Fragment>
+                        ))
+                      ) : (
+                        <NoBook />
+                      )}
+                    </List>
                   </Box>
-                </Container>
-              </ThemeProvider>
-            )}
+                </Box>
+              </Container>
+            </ThemeProvider>
           </Stack>
         </form>
       )}
