@@ -33,7 +33,10 @@ const YearSearch = () => {
     <Formik
       initialValues={{ year: '' }}
       validationSchema={Yup.object({
-        year: Yup.number().required('Publication year is required')
+        year: Yup.number()
+          .required('Publication year is required')
+          .min(868, 'The oldest book is in 868 CE...')
+          .max(new Date().getFullYear(), 'Are you time travelling?')
       })}
       onSubmit={async (values, { setSubmitting }) => {
         setError('');
