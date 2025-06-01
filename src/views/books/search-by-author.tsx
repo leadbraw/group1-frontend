@@ -110,10 +110,4 @@ const AuthorSearch = () => {
   );
 };
 
-// <List>
-//   {books.map((book) => (
-//     <BookListItem key={book.isbn13} book={book} />
-//   ))}
-// </List>
-
 export default AuthorSearch;

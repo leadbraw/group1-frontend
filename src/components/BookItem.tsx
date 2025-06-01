@@ -14,7 +14,7 @@ export function BookItem({ book }: BookItemProps) {
   return (
     <Container maxWidth="sm" sx={{ mt: 4 }}>
       <Box display="flex" flexDirection="column" alignItems="center" gap={2}>
-        <Image src={book.icons.small} alt={book.title} width={200} height={300} style={{ borderRadius: 8 }} />
+        <Image src={book.icons.small || book.icons.large} alt={book.title} width={200} height={300} style={{ borderRadius: 8 }} />
         <Typography variant="h4" align="center">
           {book.title}
         </Typography>
