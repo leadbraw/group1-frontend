@@ -16,7 +16,7 @@ export function BookItem({ book }: BookItemProps) {
       <Box display="flex" flexDirection="column" alignItems="center" gap={2}>
         <Image src={book.icons.small || book.icons.large} alt={book.title} width={200} height={300} style={{ borderRadius: 8 }} />
         <Typography variant="h4" align="center">
-          {book.title}
+          {book.title || book.original_title}
         </Typography>
         <Typography variant="subtitle1" color="textSecondary" align="center">
           Original Title: {book.original_title}
