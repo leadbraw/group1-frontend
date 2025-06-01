@@ -19,7 +19,7 @@ export function BookListItem({ book }: { book: IBook }) {
         <ListItemAvatar>
           <Avatar alt={book.title} src={book.icons.small || book.icons.large} variant="rounded" />
         </ListItemAvatar>
-        <ListItemText primary={book.title} secondary={'ISBN-13 Number: ' + book.isbn13} secondaryTypographyProps={{ color: 'gray' }} />
+        <ListItemText primary={book.title || book.original_title} secondary={'ISBN-13 Number: ' + book.isbn13} secondaryTypographyProps={{ color: 'gray' }} />
       </ListItemButton>
     </ListItem>
   );
