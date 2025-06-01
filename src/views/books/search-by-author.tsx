@@ -43,6 +43,7 @@ const AuthorSearch = () => {
           setBooks(res.data.books);
           console.log('The books:', res.data.books); // DEBUG LINE
         } catch (err: any) {
+          <NoBook />;
           setError(err.message || 'Failed to fetch books.');
         } finally {
           setSubmitting(false);
