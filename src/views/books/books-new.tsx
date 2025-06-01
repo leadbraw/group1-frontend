@@ -1,33 +1,114 @@
 'use client';
 
-import { useState } from 'react';
-import { TextField, Button, Box } from '@mui/material';
+import { Formik } from 'formik';
+import * as Yup from 'yup';
+
+// material-ui
+import {
+  //Box,
+  Button,
+  Grid,
+  InputLabel,
+  OutlinedInput,
+  Stack,
+  FormHelperText
+} from '@mui/material';
+
+// project components
+import AnimateButton from 'components/@extended/AnimateButton';
+import { openSnackbar } from 'api/snackbar';
+
+// types
+import { SnackbarProps } from 'types/snackbar';
 
 export default function NewBook() {
-  const [isbn, setIsbn] = useState('');
-  const [author, setAuthor] = useState('');
-  const [publicationYear, setPublicationYear] = useState('');
-  const [title, setTitle] = useState('');
-  const [url, setURL] = useState('');
-  const [smallUrl, setSmallURL] = useState('');
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    console.log('New book:', { title, isbn });
-    // Connect this to an API later???
-  };
-
   return (
-    <Box component="form" onSubmit={handleSubmit} sx={{ mt: 4, display: 'flex', flexDirection: 'column', gap: 2, maxWidth: 400 }}>
-      <TextField label="ISBN-13" value={isbn} onChange={(e) => setIsbn(e.target.value)} required />
-      <TextField label="Author" value={author} onChange={(e) => setAuthor(e.target.value)} required />{' '}
-      <TextField label="Publication Year" value={publicationYear} onChange={(e) => setPublicationYear(e.target.value)} required />
-      <TextField label="Book Title" value={title} onChange={(e) => setTitle(e.target.value)} required />{' '}
-      <TextField label="Image URL" value={url} onChange={(e) => setURL(e.target.value)} required />
-      <TextField label="Small Image URL" value={smallUrl} onChange={(e) => setSmallURL(e.target.value)} required />
-      <Button type="submit" variant="contained">
-        Add Book
-      </Button>
-    </Box>
+    <Formik
+      initialValues={{
+        title: '',
+        isbn: '',
+        submit: null
+      }}
+      validationSchema={Yup.object().shape({
+        title: Yup.string().max(255).required('Title is required'),
+        isbn: Yup.string()
+          .matches(/^\d{13}$/, 'ISBN must be a 13-digit number')
+          .required('ISBN is required')
+      })}
+      onSubmit={async (values, { setErrors, setStatus, setSubmitting }) => {
+        try {
+          // You could send `values` to an API here
+
+          setStatus({ success: true });
+          setSubmitting(false);
+
+          openSnackbar({
+            open: true,
+            message: 'New book added successfully!',
+            variant: 'alert',
+            alert: { color: 'success' }
+          } as SnackbarProps);
+        } catch (err: any) {
+          console.error(err);
+          setStatus({ success: false });
+          setErrors({ submit: err.message });
+          setSubmitting(false);
+        }
+      }}
+    >
+      {({ errors, handleBlur, handleChange, handleSubmit, isSubmitting, touched, values }) => (
+        <form noValidate onSubmit={handleSubmit}>
+          <Grid container spacing={3}>
+            <Grid item xs={12}>
+              <Stack spacing={1}>
+                <InputLabel htmlFor="book-title">Book Title</InputLabel>
+                <OutlinedInput
+                  id="book-title"
+                  fullWidth
+                  name="title"
+                  value={values.title}
+                  onBlur={handleBlur}
+                  onChange={handleChange}
+                  error={Boolean(touched.title && errors.title)}
+                  placeholder="Enter book title"
+                />
+                {touched.title && errors.title && <FormHelperText error>{errors.title}</FormHelperText>}
+              </Stack>
+            </Grid>
+
+            <Grid item xs={12}>
+              <Stack spacing={1}>
+                <InputLabel htmlFor="book-isbn">ISBN-13</InputLabel>
+                <OutlinedInput
+                  id="book-isbn"
+                  fullWidth
+                  name="isbn"
+                  value={values.isbn}
+                  onBlur={handleBlur}
+                  onChange={handleChange}
+                  error={Boolean(touched.isbn && errors.isbn)}
+                  placeholder="Enter 13-digit ISBN"
+                />
+                {touched.isbn && errors.isbn && <FormHelperText error>{errors.isbn}</FormHelperText>}
+              </Stack>
+            </Grid>
+
+            {errors.submit && (
+              <Grid item xs={12}>
+                <FormHelperText error>{errors.submit}</FormHelperText>
+              </Grid>
+            )}
+
+            <Grid item xs={12}>
+              <AnimateButton>
+                <Button disableElevation disabled={isSubmitting} fullWidth size="large" type="submit" variant="contained" color="primary">
+                  Add Book
+                </Button>
+              </AnimateButton>
+            </Grid>
+          </Grid>
+        </form>
+      )}
+    </Formik>
   );
 }
