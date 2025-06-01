@@ -7,7 +7,7 @@ import SearchIcon from '@mui/icons-material/Search';
 
 import { NavItemType } from 'types/menu';
 
-const icons = { ReadOutlined, BookIcon, BooksIcon, SearchIcon};
+const icons = { ReadOutlined, BookIcon, BooksIcon, SearchIcon };
 
 const pages: NavItemType = {
   id: 'group-books',
@@ -39,6 +39,13 @@ const pages: NavItemType = {
           title: <FormattedMessage id="author-search" />,
           type: 'item',
           url: '/books/authorsearch',
+          icon: icons.SearchIcon
+        },
+        {
+          id: 'year-search',
+          title: <FormattedMessage id="year-search" />,
+          type: 'item',
+          url: '/books/yearsearch',
           icon: icons.SearchIcon
         },
         {
