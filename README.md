@@ -26,3 +26,15 @@ Regular text communication over discord, as well as 1 on 1 meetings on discord f
 
 ### Beta I Sprint Comments
 Clicking on a book in the 'view multiple books' view gives you a 404 instead of bringing you to the associated 'view single book' view for that book. This will be fixed very soon. Also we ran into a Vercel issue when deploying. Something to do with yarn failing to build when it would modify yarn.lock. If memory serves, installing yarn with npm and then running yarn install fixed the error. It was pretty simple, even if my recollection is wrong. Other than that, no real issues or comments. I (Noah) suspect things will begin to make even more sense and fall into place on the frontend side beginning next week.
+
+### Beta II Sprint Contribution
+- Gage: Mock data updates, book context handling, book page/list views, update rating UI.
+- Noah: Change password functionality, general troubleshooting. 
+- Ian: Create book form, UI for deleting a book.
+- Christian: Mock data updates, search by ISBN/Author/Year/Rating/Title UI + functionality.
+
+### Beta II Sprint Meetings
+The usual text + voice communication (3x) over discord, as well as the in person meeting in lieu of lecture on May 29. 
+
+### Beta II Sprint Comments
+Ran into a problem with the Axios request interceptor causing an error because it was trying to read the window variable, that one was difficult to track down, combined with general troubleshooting for different errors trying to implement the change password functionality. Also issues with Group 7's documentation or lack thereof (no hard feelings, of course). Lot of errors slowed development considerably but I'm happy to report we meet all the requirements for this sprint.
