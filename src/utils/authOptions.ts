@@ -103,7 +103,7 @@ export const authOptions: NextAuthOptions = {
             return response.data.message; // Ideally 'password changed successfully' or similar
           }
         } catch (e: any) {
-          console.error(e); // WINDOW NOT DEFINED ERROR IS HERE!!!!
+          console.error(e);
           const errorMessage = e?.message || e?.response?.data?.message || 'Something went wrong!';
           throw new Error(errorMessage);
         }
