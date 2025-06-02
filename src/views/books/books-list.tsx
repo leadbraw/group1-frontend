@@ -11,11 +11,9 @@ import { List, Divider } from '@mui/material';
 import books from 'core/mock/mock-data';
 import { BookListItem, NoBook } from 'components/BookListItem';
 
-
 const defaultTheme = createTheme();
 
 export default function BooksList() {
-
   return (
     <ThemeProvider theme={defaultTheme}>
       <Container component="main" maxWidth="md">
@@ -40,7 +38,12 @@ export default function BooksList() {
               {books.length > 0 ? (
                 books.map((book, index: number) => (
                   <React.Fragment key={book.isbn13}>
-                    <BookListItem book={book} />
+                    <BookListItem
+                      book={book}
+                      onDelete={function (isbn13: number): void {
+                        throw new Error('Function not implemented.');
+                      }}
+                    />
                     {index < books.length - 1 && <Divider component="li" />}
                   </React.Fragment>
                 ))

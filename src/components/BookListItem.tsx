@@ -1,11 +1,13 @@
 'use client';
+import DeleteIcon from '@mui/icons-material/Delete';
+
 import { useRouter } from 'next/navigation';
 import { IBook } from 'types/books';
 import CommentsDisabledIcon from '@mui/icons-material/CommentsDisabled';
-import { ListItem, ListItemAvatar, ListItemText, Avatar, ListItemButton } from '@mui/material';
+import { IconButton, ListItem, ListItemAvatar, ListItemText, Avatar, ListItemButton } from '@mui/material';
 import { useBook } from 'contexts/BookContext';
 
-export function BookListItem({ book }: { book: IBook }) {
+export function BookListItem({ book, onDelete }: { book: IBook; onDelete: (isbn13: number) => void }) {
   const router = useRouter();
   const { onChangeBook } = useBook();
 
@@ -14,7 +16,15 @@ export function BookListItem({ book }: { book: IBook }) {
     router.push('/books/BookContext');
   }
   return (
-    <ListItem alignItems="flex-start" disablePadding>
+    <ListItem
+      alignItems="flex-start"
+      secondaryAction={
+        <IconButton edge="end" aria-label="delete" onClick={() => onDelete(book.isbn13)}>
+          <DeleteIcon />
+        </IconButton>
+      }
+      disablePadding
+    >
       <ListItemButton onClick={() => handleClick(book)}>
         <ListItemAvatar>
           <Avatar alt={book.title} src={book.icons.small || book.icons.large} variant="rounded" />
