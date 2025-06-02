@@ -100,8 +100,7 @@ export const authOptions: NextAuthOptions = {
             { headers: { Authorization: `Bearer ${credentials?.accessToken}` } }
           );
           if (response) {
-            response.data.user['accessToken'] = response.data.accessToken;
-            return response.data.user;
+            return response.data.message; // Ideally 'password changed successfully' or similar
           }
         } catch (e: any) {
           console.error(e); // WINDOW NOT DEFINED ERROR IS HERE!!!!
