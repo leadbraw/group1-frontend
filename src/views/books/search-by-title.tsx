@@ -25,21 +25,21 @@ import { BookListItem, NoBook } from 'components/BookListItem';
 
 const defaultTheme = createTheme();
 
-const AuthorSearch = () => {
+const TitleSearch = () => {
   const [books, setBooks] = useState<IBook[]>([]);
   const [error, setError] = useState('');
 
   return (
     <Formik
-      initialValues={{ author: '' }}
+      initialValues={{ title: '' }}
       validationSchema={Yup.object({
-        author: Yup.string().required('Author name is required')
+        title: Yup.string().required('Title name is required')
       })}
       onSubmit={async (values, { setSubmitting }) => {
         setError('');
         setBooks([]);
         try {
-          const res = await axios.get(`/books/author/${encodeURIComponent(values.author)}`);
+          const res = await axios.get(`/books/title/${encodeURIComponent(values.title)}`);
           setBooks(res.data.books);
           console.log('The books:', res.data); // DEBUG LINE
         } catch (err: any) {
@@ -52,16 +52,16 @@ const AuthorSearch = () => {
       {({ values, errors, touched, handleChange, handleBlur, handleSubmit, isSubmitting }) => (
         <form onSubmit={handleSubmit} noValidate>
           <Stack spacing={2}>
-            <Typography variant="h6">Author</Typography>
+            <Typography variant="h6">Title</Typography>
             <TextField
-              name="author"
+              name="title"
               fullWidth
-              value={values.author}
+              value={values.title}
               onChange={handleChange}
               onBlur={handleBlur}
-              error={touched.author && Boolean(errors.author)}
-              helperText={touched.author && errors.author}
-              placeholder="Enter name"
+              error={touched.title && Boolean(errors.title)}
+              helperText={touched.title && errors.title}
+              placeholder="Enter title of book"
             />
             <Button type="submit" variant="contained" disabled={isSubmitting}>
               Search
@@ -108,4 +108,4 @@ const AuthorSearch = () => {
   );
 };
 
-export default AuthorSearch;
+export default TitleSearch;

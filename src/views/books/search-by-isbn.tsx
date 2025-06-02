@@ -25,22 +25,22 @@ import { BookListItem, NoBook } from 'components/BookListItem';
 
 const defaultTheme = createTheme();
 
-const AuthorSearch = () => {
+const IsbnSearch = () => {
   const [books, setBooks] = useState<IBook[]>([]);
   const [error, setError] = useState('');
 
   return (
     <Formik
-      initialValues={{ author: '' }}
+      initialValues={{ isbn: '' }}
       validationSchema={Yup.object({
-        author: Yup.string().required('Author name is required')
+        isbn: Yup.string().required('ISBN is required').length(13, 'ISBN must be 13 digits long').matches(/^\d+$/, 'ISBN must be numeric')
       })}
       onSubmit={async (values, { setSubmitting }) => {
         setError('');
         setBooks([]);
         try {
-          const res = await axios.get(`/books/author/${encodeURIComponent(values.author)}`);
-          setBooks(res.data.books);
+          const res = await axios.get(`/books/isbn/${encodeURIComponent(values.isbn)}`);
+          setBooks(res.data.book ? [res.data.book] : []);
           console.log('The books:', res.data); // DEBUG LINE
         } catch (err: any) {
           setError(err.message || 'Failed to fetch books.');
@@ -52,16 +52,16 @@ const AuthorSearch = () => {
       {({ values, errors, touched, handleChange, handleBlur, handleSubmit, isSubmitting }) => (
         <form onSubmit={handleSubmit} noValidate>
           <Stack spacing={2}>
-            <Typography variant="h6">Author</Typography>
+            <Typography variant="h6">ISBN</Typography>
             <TextField
-              name="author"
+              name="isbn"
               fullWidth
-              value={values.author}
+              value={values.isbn}
               onChange={handleChange}
               onBlur={handleBlur}
-              error={touched.author && Boolean(errors.author)}
-              helperText={touched.author && errors.author}
-              placeholder="Enter name"
+              error={touched.isbn && Boolean(errors.isbn)}
+              helperText={touched.isbn && errors.isbn}
+              placeholder="Enter ISBN number"
             />
             <Button type="submit" variant="contained" disabled={isSubmitting}>
               Search
@@ -108,4 +108,4 @@ const AuthorSearch = () => {
   );
 };
 
-export default AuthorSearch;
+export default IsbnSearch;

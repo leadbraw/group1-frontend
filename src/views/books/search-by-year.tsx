@@ -33,7 +33,10 @@ const YearSearch = () => {
     <Formik
       initialValues={{ year: '' }}
       validationSchema={Yup.object({
-        year: Yup.number().required('Publication year is required')
+        year: Yup.number()
+          .required('Publication year is required')
+          .min(868, 'The oldest book is in 868 CE...')
+          .max(new Date().getFullYear(), 'Are you time travelling?')
       })}
       onSubmit={async (values, { setSubmitting }) => {
         setError('');
@@ -41,7 +44,7 @@ const YearSearch = () => {
         try {
           const res = await axios.get(`/books/year/${encodeURIComponent(values.year)}`);
           setBooks(res.data.books);
-          console.log('The books:', res.data.books); // DEBUG LINE
+          console.log('The books:', res.data); // DEBUG LINE
         } catch (err: any) {
           setError(err.message || 'Failed to fetch books.');
         } finally {
