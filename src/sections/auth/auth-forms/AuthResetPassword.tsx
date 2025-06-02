@@ -37,6 +37,7 @@ import { StringColorProps } from 'types/password';
 import EyeOutlined from '@ant-design/icons/EyeOutlined';
 import EyeInvisibleOutlined from '@ant-design/icons/EyeInvisibleOutlined';
 import { signIn } from 'next-auth/react';
+import { APP_DEFAULT_PATH } from 'config';
 
 // ============================|| STATIC - RESET PASSWORD ||============================ //
 
@@ -84,7 +85,8 @@ export default function AuthResetPassword() {
           signIn('changePassword', {
             redirect: false,
             currentPassword: values.currentPassword,
-            newPassword: values.newPassword
+            newPassword: values.newPassword,
+            callbackUrl: APP_DEFAULT_PATH
           }).then((res: any) => {
             if (res?.error) {
               setErrors({ submit: res.error });
