@@ -38,3 +38,5 @@ The usual text + voice communication (3x) over discord, as well as the in person
 
 ### Beta II Sprint Comments
 Ran into a problem with the Axios request interceptor causing an error because it was trying to read the window variable, that one was difficult to track down, combined with general troubleshooting for different errors trying to implement the change password functionality. Also issues with Group 7's documentation or lack thereof (no hard feelings, of course). Lot of errors slowed development considerably but I'm happy to report we meet all the requirements for this sprint.
+
+Update ratings is not fully finished yet due to the backend API requiring the message body to have a book id. Sent in a ticket to let group 7 know about the issue.
