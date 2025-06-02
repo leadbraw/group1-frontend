@@ -103,7 +103,7 @@ export const authOptions: NextAuthOptions = {
           }
         } catch (e: any) {
             console.error("aw man");
-          console.error(e);
+          console.error(e); // WINDOW NOT DEFINED ERROR IS HERE!!!!
           const errorMessage = e?.message || e?.response?.data?.message || 'Something went wrong!';
           throw new Error(errorMessage);
         }
