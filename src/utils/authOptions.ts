@@ -90,19 +90,15 @@ export const authOptions: NextAuthOptions = {
       },
       async authorize(credentials) {
         try {
-            console.log("about to axios patch");
           const response = await axios.patch('/users/password', {
             current_password: credentials?.current_password,
             new_password: credentials?.new_password
           });
-          console.log("patch over");
           if (response) {
-            console.log(response);
             response.data.user['accessToken'] = response.data.accessToken;
             return response.data.user;
           }
         } catch (e: any) {
-            console.error("aw man");
           console.error(e); // WINDOW NOT DEFINED ERROR IS HERE!!!!
           const errorMessage = e?.message || e?.response?.data?.message || 'Something went wrong!';
           throw new Error(errorMessage);
