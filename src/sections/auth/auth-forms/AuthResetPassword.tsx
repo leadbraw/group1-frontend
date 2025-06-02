@@ -86,8 +86,8 @@ export default function AuthResetPassword() {
             setSubmitting(true);
           signIn('changePassword', {
             redirect: false,
-            currentPassword: values.currentPassword,
-            newPassword: values.newPassword,
+            current_password: values.currentPassword,
+            new_password: values.newPassword,
             accessToken: session?.token?.accessToken,
             callbackUrl: APP_DEFAULT_PATH
           }).then((res: any) => {
