@@ -4,6 +4,7 @@ import { useEffect, useState, SyntheticEvent } from 'react';
 
 // next
 import { useRouter } from 'next/navigation';
+import { useSession } from "next-auth/react";
 
 // material-ui
 import Box from '@mui/material/Box';
@@ -44,6 +45,7 @@ import { APP_DEFAULT_PATH } from 'config';
 export default function AuthResetPassword() {
   const scriptedRef = useScriptRef();
   const router = useRouter();
+  const { data: session } = useSession();
 
   const [level, setLevel] = useState<StringColorProps>();
   const [showPassword, setShowPassword] = useState(false);
@@ -86,6 +88,7 @@ export default function AuthResetPassword() {
             redirect: false,
             currentPassword: values.currentPassword,
             newPassword: values.newPassword,
+            accessToken: session?.token?.accessToken,
             callbackUrl: APP_DEFAULT_PATH
           }).then((res: any) => {
             if (res?.error) {
