@@ -92,7 +92,12 @@ const YearSearch = () => {
                       {books.length > 0 ? (
                         books.map((book, index: number) => (
                           <React.Fragment key={book.isbn13}>
-                            <BookListItem book={book} />
+                            <BookListItem
+                              book={book}
+                              onDelete={function (isbn13: number): void {
+                                throw new Error('Function not implemented.');
+                              }}
+                            />
                             {index < books.length - 1 && <Divider component="li" />}
                           </React.Fragment>
                         ))
