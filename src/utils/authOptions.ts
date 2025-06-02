@@ -85,21 +85,24 @@ export const authOptions: NextAuthOptions = {
       id: 'changePassword',
       name: 'changePassword',
       credentials: {
-        currentPassword: { name: 'password', label: 'Password', type: 'password', placeholder: 'Enter Current Password' },
-        newPassword: { name: 'password', label: 'Password', type: 'password', placeholder: 'Enter New Password' }
+        current_password: { name: 'password', label: 'Password', type: 'password', placeholder: 'Enter Current Password' },
+        new_password: { name: 'password', label: 'Password', type: 'password', placeholder: 'Enter New Password' }
       },
       async authorize(credentials) {
         try {
+            console.log("about to axios patch");
           const response = await axios.patch('/users/password', {
-            current_password: credentials?.currentPassword,
-            new_password: credentials?.newPassword
+            current_password: credentials?.current_password,
+            new_password: credentials?.new_password
           });
+          console.log("patch over");
           if (response) {
             console.log(response);
             response.data.user['accessToken'] = response.data.accessToken;
             return response.data.user;
           }
         } catch (e: any) {
+            console.error("aw man");
           console.error(e);
           const errorMessage = e?.message || e?.response?.data?.message || 'Something went wrong!';
           throw new Error(errorMessage);
