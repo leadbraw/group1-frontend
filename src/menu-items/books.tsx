@@ -49,6 +49,13 @@ const pages: NavItemType = {
           icon: icons.SearchIcon
         },
         {
+          id: 'rating-search',
+          title: <FormattedMessage id="rating-search" />,
+          type: 'item',
+          url: '/books/ratingsearch',
+          icon: icons.SearchIcon
+        },
+        {
           id: 'title-search',
           title: <FormattedMessage id="title-search" />,
           type: 'item',

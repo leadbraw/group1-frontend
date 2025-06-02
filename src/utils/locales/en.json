@@ -21,6 +21,7 @@
   "new-book": "New Book",
   "author-search": "Search by Author",
   "isbn-search": "Search by ISBN",
+  "rating-search": "Search by Rating",
   "title-search": "Search by Title",
   "year-search": "Search by Year"
 }
