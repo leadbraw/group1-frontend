@@ -95,6 +95,7 @@ export const authOptions: NextAuthOptions = {
             new_password: credentials?.newPassword
           });
           if (response) {
+            console.log(response);
             response.data.user['accessToken'] = response.data.accessToken;
             return response.data.user;
           }

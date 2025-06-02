@@ -33,7 +33,8 @@ axiosServices.interceptors.response.use(
     } else if (error.response.status >= 500) {
       return Promise.reject({ message: 'Server Error. Contact support' });
     } else if (error.response.status === 401 && !window.location.href.includes('/login')) {
-      window.location.pathname = '/login';
+    //   window.location.pathname = '/login';
+        console.log('why are we here??');
     }
     return Promise.reject((error.response && error.response.data) || 'Server connection refused');
   }

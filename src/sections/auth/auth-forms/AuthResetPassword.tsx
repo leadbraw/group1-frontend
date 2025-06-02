@@ -80,30 +80,31 @@ export default function AuthResetPassword() {
       })}
       onSubmit={async (values, { setErrors, setStatus, setSubmitting }) => {
         try {
+            setSubmitting(true);
           signIn('changePassword', {
             redirect: false,
             currentPassword: values.currentPassword,
             newPassword: values.newPassword
           }).then((res: any) => {
             if (res?.error) {
-                setErrors({ submit: res.error });
-                setSubmitting(false);
+              setErrors({ submit: res.error });
+              setSubmitting(false);
             } else {
-                setStatus({ success: true });
-                setSubmitting(false);
-                if (typeof window !== undefined) {
-                    openSnackbar({
-                        open: true,
-                        message: 'Successfuly reset password.',
-                        variant: 'alert',
-                        alert: {
-                            color: 'success'
-                        }
-                    } as SnackbarProps);
-                }
-                setTimeout(() => {
-                    router.push('/login');
-                }, 1500);
+              setStatus({ success: true });
+              setSubmitting(false);
+              if (typeof window !== undefined) {
+                openSnackbar({
+                  open: true,
+                  message: 'Successfuly reset password.',
+                  variant: 'alert',
+                  alert: {
+                    color: 'success'
+                  }
+                } as SnackbarProps);
+              }
+              setTimeout(() => {
+                router.push('/login');
+              }, 1500);
             }
           });
         } catch (err: any) {
