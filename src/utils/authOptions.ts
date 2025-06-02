@@ -97,7 +97,7 @@ export const authOptions: NextAuthOptions = {
               current_password: credentials?.current_password,
               new_password: credentials?.new_password
             },
-            { headers: { Authroization: `Bearer ${credentials?.accessToken}` } }
+            { headers: { Authorization: `Bearer ${credentials?.accessToken}` } }
           );
           if (response) {
             response.data.user['accessToken'] = response.data.accessToken;
