@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { Box, Typography, Container } from '@mui/material';
 import { ListItem, ListItemAvatar, ListItemText, Avatar } from '@mui/material';
 import CommentsDisabledIcon from '@mui/icons-material/CommentsDisabled';
+import UpdateRatingBook from './BookRating';
 
 type BookItemProps = {
   book: IBook;
@@ -14,9 +15,15 @@ export function BookItem({ book }: BookItemProps) {
   return (
     <Container maxWidth="sm" sx={{ mt: 4 }}>
       <Box display="flex" flexDirection="column" alignItems="center" gap={2}>
-        <Image src={book.icons.small || book.icons.large} alt={book.title} width={200} height={300} style={{ borderRadius: 8 }} />
+        <Image
+          src={book.icons.large.startsWith('http') ? book.icons.large : `https://${book.icons.large}`}
+          alt={book.title}
+          width={200}
+          height={300}
+          style={{ borderRadius: 8 }}
+        />
         <Typography variant="h4" align="center">
-          {book.title || book.original_title}
+          {book.title}
         </Typography>
         <Typography variant="subtitle1" color="textSecondary" align="center">
           Original Title: {book.original_title}
@@ -27,10 +34,14 @@ export function BookItem({ book }: BookItemProps) {
         <Typography variant="body2" align="center">
           Published: {book.publication}
         </Typography>
+        <Box width="100%" mt={4}>
+          <UpdateRatingBook bookId={book.book_id} />
+        </Box>
       </Box>
     </Container>
   );
 }
+
 export function NoBook() {
   return (
     <ListItem>

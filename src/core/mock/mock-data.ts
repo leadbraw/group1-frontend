@@ -2,6 +2,7 @@ import { IBook } from 'types/books';
 
 const books: IBook[] = [
   {
+    book_id: 1,
     authors: 'Archie Adams',
     icons: {
       large: 'https://images.gr-assets.com/books/1361039443m/41865.jpg',
@@ -22,6 +23,7 @@ const books: IBook[] = [
     title: 'Arctic Action'
   },
   {
+    book_id: 2,
     authors: 'Benji Barnes',
     icons: {
       large: 'https://images.gr-assets.com/books/1361975680m/2657.jpg',
@@ -42,6 +44,7 @@ const books: IBook[] = [
     title: 'Banana Bonanza'
   },
   {
+    book_id: 3,
     authors: 'Chrissy Coleman',
     icons: {
       large: 'https://images.gr-assets.com/books/1360206420m/11870085.jpg',
@@ -62,6 +65,7 @@ const books: IBook[] = [
     title: 'Code and Creativity'
   },
   {
+    book_id: 4,
     authors: 'Danny DeVito',
     icons: {
       large: 'https://images.gr-assets.com/books/1398034300m/5107.jpg',
@@ -82,6 +86,7 @@ const books: IBook[] = [
     title: 'Dear Dad'
   },
   {
+    book_id: 5,
     authors: 'Ellie Evans',
     icons: {
       large: 'https://images.gr-assets.com/books/1484565687m/77203.jpg',
