@@ -85,18 +85,22 @@ export const authOptions: NextAuthOptions = {
       id: 'changePassword',
       name: 'changePassword',
       credentials: {
-        currentPassword: { name: 'password', label: 'Password', type: 'password', placeholder: 'Enter Current Password' },
-        newPassword: { name: 'password', label: 'Password', type: 'password', placeholder: 'Enter New Password' }
+        current_password: { name: 'password', label: 'Password', type: 'password', placeholder: 'Enter Current Password' },
+        new_password: { name: 'password', label: 'Password', type: 'password', placeholder: 'Enter New Password' },
+        accessToken: { name: 'accessToken', label: 'Access Token', type: 'text', placeholder: 'Enter Access Token' }
       },
       async authorize(credentials) {
         try {
-          const response = await axios.patch('/users/password', {
-            current_password: credentials?.currentPassword,
-            new_password: credentials?.newPassword
-          });
+          const response = await axios.patch(
+            '/users/password',
+            {
+              current_password: credentials?.current_password,
+              new_password: credentials?.new_password
+            },
+            { headers: { Authorization: `Bearer ${credentials?.accessToken}` } }
+          );
           if (response) {
-            response.data.user['accessToken'] = response.data.accessToken;
-            return response.data.user;
+            return response.data.message; // Ideally 'password changed successfully' or similar
           }
         } catch (e: any) {
           console.error(e);

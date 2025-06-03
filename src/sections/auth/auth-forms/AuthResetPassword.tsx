@@ -4,6 +4,7 @@ import { useEffect, useState, SyntheticEvent } from 'react';
 
 // next
 import { useRouter } from 'next/navigation';
+import { useSession } from "next-auth/react";
 
 // material-ui
 import Box from '@mui/material/Box';
@@ -37,12 +38,14 @@ import { StringColorProps } from 'types/password';
 import EyeOutlined from '@ant-design/icons/EyeOutlined';
 import EyeInvisibleOutlined from '@ant-design/icons/EyeInvisibleOutlined';
 import { signIn } from 'next-auth/react';
+import { APP_DEFAULT_PATH } from 'config';
 
 // ============================|| STATIC - RESET PASSWORD ||============================ //
 
 export default function AuthResetPassword() {
   const scriptedRef = useScriptRef();
   const router = useRouter();
+  const { data: session } = useSession();
 
   const [level, setLevel] = useState<StringColorProps>();
   const [showPassword, setShowPassword] = useState(false);
@@ -80,30 +83,33 @@ export default function AuthResetPassword() {
       })}
       onSubmit={async (values, { setErrors, setStatus, setSubmitting }) => {
         try {
+            setSubmitting(true);
           signIn('changePassword', {
             redirect: false,
-            currentPassword: values.currentPassword,
-            newPassword: values.newPassword
+            current_password: values.currentPassword,
+            new_password: values.newPassword,
+            accessToken: session?.token?.accessToken,
+            callbackUrl: APP_DEFAULT_PATH
           }).then((res: any) => {
             if (res?.error) {
-                setErrors({ submit: res.error });
-                setSubmitting(false);
+              setErrors({ submit: res.error });
+              setSubmitting(false);
             } else {
-                setStatus({ success: true });
-                setSubmitting(false);
-                if (typeof window !== undefined) {
-                    openSnackbar({
-                        open: true,
-                        message: 'Successfuly reset password.',
-                        variant: 'alert',
-                        alert: {
-                            color: 'success'
-                        }
-                    } as SnackbarProps);
-                }
-                setTimeout(() => {
-                    router.push('/login');
-                }, 1500);
+              setStatus({ success: true });
+              setSubmitting(false);
+              if (typeof window !== undefined) {
+                openSnackbar({
+                  open: true,
+                  message: 'Successfuly reset password.',
+                  variant: 'alert',
+                  alert: {
+                    color: 'success'
+                  }
+                } as SnackbarProps);
+              }
+              setTimeout(() => {
+                router.push('/login');
+              }, 1500);
             }
           });
         } catch (err: any) {
