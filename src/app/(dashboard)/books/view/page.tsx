@@ -2,6 +2,7 @@ import { BookItem } from 'components/BookItem';
 
 export default function BookItemViewPge() {
   const book = {
+    book_id: 9155,
     authors: 'Archie Adams',
     icons: {
       large: 'https://images.gr-assets.com/books/1361039443m/41865.jpg',
