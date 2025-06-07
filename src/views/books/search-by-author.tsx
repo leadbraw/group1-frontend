@@ -94,7 +94,7 @@ const AuthorSearch = () => {
                     alignItems: 'center'
                   }}
                 >
-                  <List sx={{ width: '100%', maxWidth: 600 }}>
+                  <List sx={{ width: '100%', maxWidth: 800 }}>
                     {books.length > 0 ? (
                       books.map((book, index: number) => (
                         <React.Fragment key={book.isbn13}>
