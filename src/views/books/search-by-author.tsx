@@ -77,7 +77,8 @@ const AuthorSearch = () => {
                     marginTop: 8,
                     display: 'flex',
                     flexDirection: 'column',
-                    alignItems: 'center'
+                    alignItems: 'center',
+                    justifyContent: 'center'
                   }}
                 >
                   <Typography component="h1" variant="h5">
