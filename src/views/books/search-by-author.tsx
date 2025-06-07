@@ -86,7 +86,7 @@ const AuthorSearch = () => {
                   </Typography>
 
                   <Box sx={{ mt: 4, width: '100%' }}>
-                    <List>
+                    <List sx={{ maxWidth: 600, mx: 'auto' }}>
                       {books.length > 0 ? (
                         books.map((book, index: number) => (
                           <React.Fragment key={book.isbn13}>
