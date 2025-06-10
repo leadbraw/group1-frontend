@@ -1,43 +1,68 @@
 'use client';
-import React, { useEffect, useState } from 'react';
-import Avatar from '@mui/material/Avatar';
-import CssBaseline from '@mui/material/CssBaseline';
-import Box from '@mui/material/Box';
+
+import * as React from 'react';
+import {
+  Avatar,
+  CssBaseline,
+  Box,
+  Typography,
+  Container,
+  List,
+  Divider,
+  Button,
+  Stack,
+  CircularProgress
+} from '@mui/material';
 import BookIcon from '@mui/icons-material/Book';
-import Typography from '@mui/material/Typography';
-import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { List, Divider, Button } from '@mui/material';
+import axios from 'utils/axios';
 import { BookListItem, NoBook } from 'components/BookListItem';
 import { IBook } from 'types/books';
-import axios from 'utils/axios'; 
 
 const defaultTheme = createTheme();
-const limit = 20; 
 
 export default function BooksList() {
-  const [books, setBooks] = useState<IBook[]>([]);
-  const [page, setPage] = useState(1);
-  const [loading, setLoading] = useState(false);
-  const [hasMore, setHasMore] = useState(true);
+  const [books, setBooks] = React.useState<IBook[]>([]);
+  const [loading, setLoading] = React.useState(false);
+  const [page, setPage] = React.useState(1);
+  const [limit] = React.useState(20); 
+  const [pages, setPages] = React.useState(1); 
 
-  useEffect(() => {
-    const fetchBooks = async () => {
-      setLoading(true);
-      try {
-        const res = await axios.get(`/books?page=${page}&limit=${limit}`);
-        setBooks(res.data.books || []);
-        setHasMore(res.data.books.length === limit);
-      } catch (err) {
-        console.error('Failed to fetch books:', err);
-        setBooks([]);
-      } finally {
-        setLoading(false);
-      }
-    };
+  const fetchBooks = async (pageNumber: number) => {
+    setLoading(true);
+    try {
+      const response = await axios.get('/books', {
+        params: {
+          page: pageNumber,
+          limit: limit
+        }
+      });
 
-    fetchBooks();
-  }, [page]);
+      setBooks(response.data.books);
+      setPages(response.data.pages);
+      setPage(response.data.page);
+    } catch (error) {
+      console.error('Error fetching books:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  React.useEffect(() => {
+    fetchBooks(page);
+  }, []);
+
+  const handlePrev = () => {
+    if (page > 1) {
+      fetchBooks(page - 1);
+    }
+  };
+
+  const handleNext = () => {
+    if (page < pages) {
+      fetchBooks(page + 1);
+    }
+  };
 
   return (
     <ThemeProvider theme={defaultTheme}>
@@ -60,13 +85,18 @@ export default function BooksList() {
 
           <Box sx={{ mt: 4, width: '100%' }}>
             {loading ? (
-              <Typography>Loading...</Typography>
+              <Box display="flex" justifyContent="center" alignItems="center" p={2}>
+                <CircularProgress />
+              </Box>
             ) : (
               <List>
                 {books.length > 0 ? (
-                  books.map((book, index: number) => (
+                  books.map((book, index) => (
                     <React.Fragment key={book.isbn13}>
-                      <BookListItem book={book} />
+                      <BookListItem
+                        book={book}
+                        onDelete={() => {}}
+                      />
                       {index < books.length - 1 && <Divider component="li" />}
                     </React.Fragment>
                   ))
@@ -75,24 +105,19 @@ export default function BooksList() {
                 )}
               </List>
             )}
-
-            <Box display="flex" justifyContent="space-between" mt={2}>
-              <Button
-                variant="outlined"
-                onClick={() => setPage((prev) => Math.max(prev - 1, 1))}
-                disabled={page === 1 || loading}
-              >
-                Previous
-              </Button>
-              <Button
-                variant="outlined"
-                onClick={() => setPage((prev) => prev + 1)}
-                disabled={!hasMore || loading}
-              >
-                Next
-              </Button>
-            </Box>
           </Box>
+
+          <Stack direction="row" spacing={2} justifyContent="center" mt={4}>
+            <Button variant="contained" onClick={handlePrev} disabled={page === 1 || loading}>
+              Previous
+            </Button>
+            <Typography variant="body1" sx={{ alignSelf: 'center' }}>
+              Page {page} of {pages}
+            </Typography>
+            <Button variant="contained" onClick={handleNext} disabled={page === pages || loading}>
+              Next
+            </Button>
+          </Stack>
         </Box>
       </Container>
     </ThemeProvider>
